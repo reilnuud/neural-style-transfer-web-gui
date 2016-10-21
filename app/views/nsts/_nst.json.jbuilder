@@ -1,0 +1,2 @@
+json.extract! nst, :id, :styleImage, :styleWeight, :contentImage, :contentWeight, :styleRatio, :imageSize, :originalColors, :initPattern, :pooling, :created_at, :updated_at
+json.url nst_url(nst, format: :json)

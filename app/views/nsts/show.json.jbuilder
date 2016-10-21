@@ -1,0 +1,1 @@
+json.partial! "nsts/nst", nst: @nst

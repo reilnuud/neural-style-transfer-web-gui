@@ -1,0 +1,73 @@
+<%= render 'alert' %>
+
+<hr>
+
+<div class="row">
+
+  <div class="col-sm-6 text-xs-center text-sm-left">
+    <h1>Neural Style Transfers</h1>
+  </div>
+
+  <div class="col-sm-6 text-xs-center text-sm-right">
+    <%= link_to 'New Style Transfer >>', new_nst_path, :class => "btn btn-primary btn-lg", "role"=>"button"  %>
+  </div>
+
+</div>
+
+<hr>
+
+<div class="row">
+
+  <% @nsts.order(created_at: :desc).each do |nst| %>
+
+    <div class="col-sm-6 col-md-4" id="nst-<%= nst.id %>">
+      <div class="card">
+        <%= link_to nst.outputImage, "data-lightbox" => "index" do %>
+          <%= image_tag nst.outputImage, :class=>"card-img-top img-fluid" unless nst.outputImage.blank? %> 
+        <% end %>
+        <div class="progress-bar"></div>
+
+          <div class="card-block">
+
+            <div class="row">
+
+              <div class="col-xs-6" style="padding-right:5px;">
+                <%= image_tag nst.contentImage, :class=>"img-fluid" unless nst.contentImage.blank? %>
+                <strong>Content Image</strong><br />
+                <small><strong>Weight:</strong> <%= nst.contentWeight.round(0) %></small>
+              </div>
+
+              <div class="col-xs-6" style="padding-left:5px;">
+                <%= image_tag nst.styleImage, :class=>"img-fluid" unless nst.styleImage.blank? %>
+                <strong>Style Image</strong><br />
+                <small><strong>Weight:</strong> <%= nst.styleWeight.round(0) %></small>
+              </div>
+
+            </div>
+
+          </div>
+
+        <!--<strong>Styleratio:</strong> <%= nst.styleRatio %><br />
+        <strong>Imagesize:</strong> <%= nst.imageSize %><br />
+        <strong>Originalcolors:</strong> <%= nst.originalColors %><br />
+        <strong>Initpattern:</strong> <%= nst.initPattern %><br />
+        <strong>Pooling:</strong> <%= nst.pooling %><br />-->
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Style Ratio:</strong> <%= nst.styleRatio %></li>
+          <li class="list-group-item"><strong>Learning Rate:</strong> <%= nst.learnRate %></li>
+          <li class="list-group-item"><strong>Iterations:</strong> <%= nst.iterations %></li>
+        </ul>
+
+        <div class="card-footer text-xs-right">
+        
+          <%= link_to 'Destroy', nst, method: :delete, :class => "btn btn-outline-danger btn-sm margin-vertical" , data: { confirm: 'Are you sure?' } %>
+
+        </div>
+
+      </div>
+    </div>
+
+  <% end %>
+
+</div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nstgui - Neural Style Transfer GUI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+
+  </head>
+
+  <body>
+  	<header>
+  		<nav class="navbar navbar-full navbar-dark bg-inverse bg-faded">
+	  		<div class="container">
+	  			<a class="navbar-brand" href="/"><strong>nst</strong>gui</span></a>
+	  		</div>
+  		</nav>
+  	</header>
+  	<div class="container">
+    <%= yield %>
+    </div>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= @footer_scripts %>
+
+  </body>
+</html>

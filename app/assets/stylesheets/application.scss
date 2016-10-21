@@ -1,0 +1,139 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *
+ */
+@import 'dropzone/basic';
+@import 'lightbox.min';
+@import 'bootstrap';
+
+body {
+	font-family: 'Roboto', sans-serif;
+    background:#fafafa;
+}
+
+header {
+	margin-bottom:10px;
+}
+
+.navbar-brand {
+    font-size: 1.75rem;
+}
+
+.margin-vertical {
+	margin-top:10px;
+	margin-bottom:10px;	
+}
+
+.list-group.list-group-flush {
+    margin: -1px;
+}
+
+// custom forms
+
+/*.custom-control-indicator {
+    background:$gray-lighter;
+}*/
+
+// nst form
+
+/*
+.contentImage, .styleImage {
+    width:100%;
+    height:auto;
+    position: relative;
+    max-width: 216px;
+    background:$gray-lighter;
+    padding: 15px;
+
+    &:hover {
+        background:$gray-light;
+        &:after {
+            border-color:$gray-lighter;
+        }
+        span {
+            color:$gray-lighter;
+        }
+    }
+    &:active, &:focus {
+        border-color:transparent;
+        outline:none;
+    }
+    &:after {
+        content:'';
+        display:block;
+        padding: calc(50% - 2px);
+        border:2px dashed $gray-light;
+    }
+    span {
+        white-space: pre-wrap;
+        position: absolute;
+        left: 30px;
+        right: 30px;
+        top: 40%;
+        z-index:1;
+        color:$gray;
+    }
+    img {
+        position: absolute;
+        width:100%;
+        height:auto;
+        z-index:2;
+    }
+}
+
+*/
+
+// dropzone.js
+
+.dz-default.dz-message {
+    width: 100%;
+    padding: 40px 10px;
+    text-align: center;
+    font-weight: bold;
+    border: 2px dashed lightgrey;
+    color: grey;
+    cursor: pointer;
+}
+
+// rangeslider.js
+
+.rangeslider.rangeslider--horizontal {
+    height:15px;
+    background:$gray-lighter;
+    
+    .rangeslider__fill {
+        background:$brand-primary;
+    }
+    .rangeslider__handle {
+        box-shadow: 0 0 4px rgba(black,.15);
+        height:30px;
+        width:30px;
+        top: -7.5px;
+        background:white;
+        border: 2px solid transparent;
+
+        &:active {
+            border:2px solid $brand-primary;
+            &:after {
+                background:white;
+                border:5px solid $brand-primary
+            }
+        }
+
+        &:after {
+            background:$brand-primary;
+            width: 20px;
+            height:20px;
+        }
+    }
+}

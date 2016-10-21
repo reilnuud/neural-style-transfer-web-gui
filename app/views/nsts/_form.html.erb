@@ -1,0 +1,135 @@
+<%= form_for @nst, html: { multipart: true } do |f| %>
+  <% if @nst.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(nst.errors.count, "error") %> prohibited this nst from being saved:</h2>
+
+      <ul>
+      <% nst.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+      
+      <div class="row">
+
+        <!-- CONTENT IMAGE -->
+
+        <div class="field margin-vertical col-sm-6">
+          <h2><%= f.label :contentImage, "Content Image" %></h2>
+          <%= f.file_field :contentImage, :required => true, :class=>"form-control"  %>
+          <!--<div class="margin-vertical">
+            <%= f.label :originalColors, :class => "custom-control custom-checkbox" do %>
+              <%= f.check_box :originalColors, :class => "custom-control-input" %>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Keep Content Image's original colors.</span>
+            <% end %>
+          </div>-->
+        </div>
+
+        <!-- STYLE IMAGE -->
+
+        <div class="field margin-vertical col-sm-6">
+          <h2><%= f.label :styleImage, "Style Image" %></h2>
+          <%= f.file_field :styleImage, :required => true, :class=>"form-control" %>
+        </div>
+
+      </div>
+
+      <!-- SETTINGS -->
+
+      <h2 class="margin-vertical">Settings</h2>
+
+      <div class="field margin-vertical">
+        <h5><%= f.label :contentWeight, "Content Weight:" %></h5>
+        <%= f.range_field :contentWeight, :min => 5, :max => 2000, :step => 5, :value => 50, :id => "contentWeight-slider" %>
+      </div>
+  
+      <div class="field margin-vertical">
+        <h5><%= f.label :styleWeight, "Style Weight:" %></h5>
+        <%= f.range_field :styleWeight, :min => 50, :max => 7000, :step => 50, :value => 6000, :id => "styleWeight-slider" %>
+      </div>
+
+      <div class="field margin-vertical">
+        <h5><%= f.label :styleRatio, "Style Ratio:" %></h5>
+        <%= f.range_field :styleRatio, :min => 0.75, :max => 1.25, :step => 0.0625, :value => 1, :id => "styleRatio-slider" %>
+      </div>
+
+      <div class="field margin-vertical">
+        <h5><%= f.label :learnRate, "Learning Rate:" %></h5>
+        <%= f.range_field :learnRate, :min => 0.01, :max => 1.25, :step => 0.01, :value => 1, :id => "learnRate-slider" %>
+      </div>
+
+      <!--<div class="field margin-vertical">
+        <h5><%= f.label :tvRatio, "TV Strength:" %></h5>
+        <%= f.range_field :tvRatio, :min => 0.000001, :max => 0.01, :step => 0.000001, :value => 5000, :id => "tvRatio-slider" %>
+      </div>-->
+
+      <div class="field margin-vertical">
+        <h5><%= f.label :iterations, "Iterations:" %></h5>
+        <%= f.range_field :iterations, :min => 500, :max => 2000, :step => 100, :value => 500, :id => "iterations-slider" %>
+      </div>
+
+      <div class="field margin-vertical">
+        <h5><%= f.label :imageSize, "Image Size" %></h5>
+        <%= f.number_field :imageSize, :class=>"form-control", "readonly"=>"readonly", :value => 720 %>
+        <small class="text-muted">Cannot be changed.</small>
+      </div>
+
+      <!--<div class="field margin-vertical">
+        <h5>Initiation Pattern</h5>
+        <%= f.label :initPattern_random, 'Random', :class =>" custom-control custom-radio"  do %>
+          <%= f.radio_button :initPattern, 'random', :checked => true, :class => "custom-control-input" %>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Max</span>
+        <% end %>
+        <%= f.label :initPattern_image, 'Content Image', :class => "custom-control custom-radio" do %>
+          <%= f.radio_button :initPattern, 'image', :class => "custom-control-input" %>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Average</span>
+        <% end %>
+      </div>
+
+      <div class="field margin-vertical">
+        <h5>Pooling</h5>
+        <%= f.label :pooling_max, 'Max', :class =>" custom-control custom-radio"  do %>
+          <%= f.radio_button :pooling, 'max', :checked => true, :class => "custom-control-input" %>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Max</span>
+        <% end %>
+        <%= f.label :pooling_avg, 'Average', :class => "custom-control custom-radio" do %>
+          <%= f.radio_button :pooling, 'avg', :class => "custom-control-input" %>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Average</span>
+        <% end %>
+      </div>-->
+
+  <div class="actions margin-vertical">
+    <%= f.submit "Transfer Style", :class => "btn btn-primary", "role" => "button" %>
+  </div>
+<% end %>
+
+
+
+
+<%= javascript_include_tag 'rangeslider.min' %>
+<%= stylesheet_link_tag 'rangeslider' %>
+
+
+<script>
+
+$(document).ready( function() {
+
+  $('input[type="range"]').rangeslider({
+    polyfill: false,
+    onInit : function() {
+        this.output = $( '<div class="range-output" />' ).insertAfter( this.$range ).html( this.$element.val() );
+    },
+    onSlide : function( position, value ) {
+        this.output.html( value );
+    }
+  });
+
+});
+
+</script>

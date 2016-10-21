@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  styleImage: MyString
+  styleWeight: 1
+  contentImage: MyString
+  contentWeight: 1
+  styleRatio: 1
+  imageSize: 1
+  originalColors: false
+  initPattern: MyString
+  pooling: MyString
+
+two:
+  styleImage: MyString
+  styleWeight: 1
+  contentImage: MyString
+  contentWeight: 1
+  styleRatio: 1
+  imageSize: 1
+  originalColors: false
+  initPattern: MyString
+  pooling: MyString

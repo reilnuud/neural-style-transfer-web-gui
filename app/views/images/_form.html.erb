@@ -1,0 +1,30 @@
+<%= form_for @image, html: { multipart: true, :class=>'dropzone', :id=>"image_upload" }, :remote => true, authenticity_token: true do |f| %>
+
+  <% if @image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+ 
+      <% @image.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger" role="alert"><%= message %></div>
+      <% end %>
+
+      <div class="fallback">
+        <%= f.file_field :image %>
+      </div>
+
+    </div>
+  <% end %>
+  
+<% end %>
+
+<script>
+
+  Dropzone.autoDiscover = false;
+
+  $("#image_upload").dropzone({
+    paramName: 'image[image]',
+    dictDefaultMessage: 'Drop files or click here to upload.',
+    maxFilesize: 5
+  })
+
+</script>

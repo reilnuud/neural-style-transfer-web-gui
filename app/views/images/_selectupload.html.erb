@@ -1,0 +1,54 @@
+<h2>Image Library</h2>
+
+<%= render 'form', image: @image %>
+
+<h1>Image Library</h1>
+
+<hr>
+
+<%= render 'index' %>
+
+<hr class="margin-vertical">
+
+<button type="button" class="btn btn-primary margin-vertical" data-toggle="modal" data-target="#imageUploadModal">Upload Images</button>
+
+<div class="modal fade" id="imageUploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'form', image: @image %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% @footer_scripts = capture do %>
+
+<script>
+
+$('#imageUploadModal').on('hidden.bs.modal', function () {
+ $(document).ready(function () {
+  // will call refreshPartial every 3 seconds
+  setInterval(refreshPartial, 3000)
+  });
+
+  // calls action refreshing the partial
+  function refreshPartial() {
+    $.ajax({
+      url: "whatever_controller/refresh_part"
+   })
+  }
+})
+
+</script>
+
+<% end %>
