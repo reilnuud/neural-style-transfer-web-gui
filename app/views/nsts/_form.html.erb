@@ -60,10 +60,11 @@
         <%= f.range_field :learnRate, :min => 0.01, :max => 1.25, :step => 0.01, :value => 1, :id => "learnRate-slider" %>
       </div>
 
-      <!--<div class="field margin-vertical">
+      <div class="field margin-vertical">
         <h5><%= f.label :tvRatio, "TV Strength:" %></h5>
-        <%= f.range_field :tvRatio, :min => 0.000001, :max => 0.01, :step => 0.000001, :value => 5000, :id => "tvRatio-slider" %>
-      </div>-->
+        <%= f.range_field :tvRatio, :min => 1, :max => 10, :step => 1, :value => 5, :id => "tvRatio-slider" %>
+        <small class="text-muted">This changes the negative scientific notation factor for a range of .1 to .00000001.</small>
+      </div>
 
       <div class="field margin-vertical">
         <h5><%= f.label :iterations, "Iterations:" %></h5>
@@ -109,12 +110,9 @@
   </div>
 <% end %>
 
-
-
-
-<%= javascript_include_tag 'rangeslider.min' %>
 <%= stylesheet_link_tag 'rangeslider' %>
 
+<% @footer_scripts = capture do %>
 
 <script>
 
@@ -133,3 +131,5 @@ $(document).ready( function() {
 });
 
 </script>
+
+<% end %>

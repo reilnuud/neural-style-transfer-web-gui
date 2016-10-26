@@ -30,24 +30,24 @@ class NstsController < ApplicationController
       @styleSize = @nst.styleRatio * @nst.imageSize
       if @nst.save
         @nstexec = "(cd ~/fast-neural-style/ && exec th slow_neural_style.lua \
-          -content_image      /home/reilnuud/nst-gui/public#{@nst.contentImage} \
-          -style_image        /home/reilnuud/nst-gui/public#{@nst.styleImage} \
+          -content_image      #{Rails.root.to_s}/public#{@nst.contentImage} \
+          -style_image        #{Rails.root.to_s}/public#{@nst.styleImage} \
           -image_size         #{@nst.imageSize} \
           -content_weights    #{@nst.contentWeight} \
           -style_weights      #{@nst.styleWeight} \
           -num_iterations     #{@nst.iterations} \
           -style_image_size   #{@styleSize} \
-          -output_image       /home/reilnuud/nst-gui/public/nst-output/nst-#{@nst.id}.jpg \
+          -output_image       #{Rails.root.to_s}/public/nst-output/nst-#{@nst.id}.jpg \
           -print_every        1 \
           -save_every         100 \
           -gpu                0 \
           -backend            cuda\
           -use_cudnn          1 \
-          -tv_strength         0.00001 \
+          -tv_strength        #{1/(@nst.tvRatio * 10) } \
           -learning_rate      #{@nst.learnRate} \
           )"
-        system(@nstexec)
-        @nst.update(outputImage: "/nst-output/nst-#{@nst.id}_#{@nst.iterations}.jpg")
+        SlowStyleTransferJob.perform_later @nstexec, @nst
+        @nst.update(status: "queued")
         # format.json { render :show, status: :created, location: @nst }
       else
         format.html { render :new }
@@ -88,6 +88,6 @@ class NstsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def nst_params
-      params.require(:nst).permit(:styleImage, :styleWeight, :contentImage, :contentWeight, :styleRatio, :imageSize, :originalColors, :initPattern, :pooling, :iterations, :outputImage, :learnRate, :tvRatio )
+      params.require(:nst).permit(:styleImage, :styleWeight, :contentImage, :contentWeight, :styleRatio, :imageSize, :originalColors, :initPattern, :pooling, :iterations, :outputImage, :learnRate, :tvRatio, :status )
     end
 end

@@ -31,11 +31,397 @@ header {
 
 .margin-vertical {
 	margin-top:10px;
-	margin-bottom:10px;	
+	margin-bottom:10px;
+    &-more {
+        margin-top:15px;
+        margin-bottom:15px;
+    }
+    &-double {
+        margin-top:20px;
+        margin-bottom:20px;
+    }
 }
 
 .list-group.list-group-flush {
     margin: -1px;
+}
+
+.nst {
+        -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein .75s easein; /* Firefox < 16 */
+        -ms-animation: fadein .75s easein; /* Internet Explorer */
+         -o-animation: fadein .75s easein; /* Opera < 12.1 */
+            animation: fadein .75s easein;
+}
+
+.card {
+    overflow: hidden;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+// css3 loading animation
+
+@-webkit-keyframes loading {
+  0% {
+    opacity: 1;
+    -ms-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 0.1;
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes loading {
+  0% {
+    opacity: 1;
+    -ms-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 0.1;
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-moz-keyframes loading {
+  0% {
+    opacity: 1;
+    -ms-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 0.1;
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-ms-keyframes loading {
+  0% {
+    opacity: 1;
+    -ms-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 0.1;
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-moz-keyframes loading {
+  0% {
+    opacity: 1;
+    -ms-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 0.1;
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes loading {
+  0% {
+    opacity: 1;
+    -ms-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 0.1;
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-o-keyframes loading {
+  0% {
+    opacity: 1;
+    -ms-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 0.1;
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes loading {
+  0% {
+    opacity: 1;
+    -ms-transform: scale(1.8);
+    -moz-transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+    -o-transform: scale(1.8);
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 0.1;
+    -ms-transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.loading {
+    text-align: center;
+    z-index:10;
+    height:100%;
+    width:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    right:0;
+    background:rgba($brand-primary,.5);
+
+    > div {
+      background: none;
+      position: relative;
+      margin: 20% auto 0;
+      vertical-align: middle;
+      width: 200px;
+      height: 200px;
+        z-index: 11;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    > div > div {
+      width: 14px;
+      height: 14px;
+      margin-left: 9px;
+      margin-top: 9px;
+      position: absolute;
+    }
+    > div > div > div {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      background: #fff;
+    }
+    > div > div:nth-of-type(1) > div {
+      -ms-animation: loading 3s linear infinite;
+      -moz-animation: loading 3s linear infinite;
+      -webkit-animation: loading 3s linear infinite;
+      -o-animation: loading 3s linear infinite;
+      animation: loading 3s linear infinite;
+      -ms-animation-delay: 0s;
+      -moz-animation-delay: 0s;
+      -webkit-animation-delay: 0s;
+      -o-animation-delay: 0s;
+      animation-delay: 0s;
+    }
+    > div > div:nth-of-type(1) {
+      -ms-transform: translate(84px, 84px) rotate(45deg) translate(70px, 0);
+      -moz-transform: translate(84px, 84px) rotate(45deg) translate(70px, 0);
+      -webkit-transform: translate(84px, 84px) rotate(45deg) translate(70px, 0);
+      -o-transform: translate(84px, 84px) rotate(45deg) translate(70px, 0);
+      transform: translate(84px, 84px) rotate(45deg) translate(70px, 0);
+    }
+    > div > div:nth-of-type(2) > div {
+      -ms-animation: loading 3s linear infinite;
+      -moz-animation: loading 3s linear infinite;
+      -webkit-animation: loading 3s linear infinite;
+      -o-animation: loading 3s linear infinite;
+      animation: loading 3s linear infinite;
+      -ms-animation-delay: 0.37s;
+      -moz-animation-delay: 0.37s;
+      -webkit-animation-delay: 0.37s;
+      -o-animation-delay: 0.37s;
+      animation-delay: 0.37s;
+    }
+    > div > div:nth-of-type(2) {
+      -ms-transform: translate(84px, 84px) rotate(90deg) translate(70px, 0);
+      -moz-transform: translate(84px, 84px) rotate(90deg) translate(70px, 0);
+      -webkit-transform: translate(84px, 84px) rotate(90deg) translate(70px, 0);
+      -o-transform: translate(84px, 84px) rotate(90deg) translate(70px, 0);
+      transform: translate(84px, 84px) rotate(90deg) translate(70px, 0);
+    }
+    > div > div:nth-of-type(3) > div {
+      -ms-animation: loading 3s linear infinite;
+      -moz-animation: loading 3s linear infinite;
+      -webkit-animation: loading 3s linear infinite;
+      -o-animation: loading 3s linear infinite;
+      animation: loading 3s linear infinite;
+      -ms-animation-delay: 0.75s;
+      -moz-animation-delay: 0.75s;
+      -webkit-animation-delay: 0.75s;
+      -o-animation-delay: 0.75s;
+      animation-delay: 0.75s;
+    }
+    > div > div:nth-of-type(3) {
+      -ms-transform: translate(84px, 84px) rotate(135deg) translate(70px, 0);
+      -moz-transform: translate(84px, 84px) rotate(135deg) translate(70px, 0);
+      -webkit-transform: translate(84px, 84px) rotate(135deg) translate(70px, 0);
+      -o-transform: translate(84px, 84px) rotate(135deg) translate(70px, 0);
+      transform: translate(84px, 84px) rotate(135deg) translate(70px, 0);
+    }
+    > div > div:nth-of-type(4) > div {
+      -ms-animation: loading 3s linear infinite;
+      -moz-animation: loading 3s linear infinite;
+      -webkit-animation: loading 3s linear infinite;
+      -o-animation: loading 3s linear infinite;
+      animation: loading 3s linear infinite;
+      -ms-animation-delay: 1.12s;
+      -moz-animation-delay: 1.12s;
+      -webkit-animation-delay: 1.12s;
+      -o-animation-delay: 1.12s;
+      animation-delay: 1.12s;
+    }
+    > div > div:nth-of-type(4) {
+      -ms-transform: translate(84px, 84px) rotate(180deg) translate(70px, 0);
+      -moz-transform: translate(84px, 84px) rotate(180deg) translate(70px, 0);
+      -webkit-transform: translate(84px, 84px) rotate(180deg) translate(70px, 0);
+      -o-transform: translate(84px, 84px) rotate(180deg) translate(70px, 0);
+      transform: translate(84px, 84px) rotate(180deg) translate(70px, 0);
+    }
+    > div > div:nth-of-type(5) > div {
+      -ms-animation: loading 3s linear infinite;
+      -moz-animation: loading 3s linear infinite;
+      -webkit-animation: loading 3s linear infinite;
+      -o-animation: loading 3s linear infinite;
+      animation: loading 3s linear infinite;
+      -ms-animation-delay: 1.5s;
+      -moz-animation-delay: 1.5s;
+      -webkit-animation-delay: 1.5s;
+      -o-animation-delay: 1.5s;
+      animation-delay: 1.5s;
+    }
+    > div > div:nth-of-type(5) {
+      -ms-transform: translate(84px, 84px) rotate(225deg) translate(70px, 0);
+      -moz-transform: translate(84px, 84px) rotate(225deg) translate(70px, 0);
+      -webkit-transform: translate(84px, 84px) rotate(225deg) translate(70px, 0);
+      -o-transform: translate(84px, 84px) rotate(225deg) translate(70px, 0);
+      transform: translate(84px, 84px) rotate(225deg) translate(70px, 0);
+    }
+    > div > div:nth-of-type(6) > div {
+      -ms-animation: loading 3s linear infinite;
+      -moz-animation: loading 3s linear infinite;
+      -webkit-animation: loading 3s linear infinite;
+      -o-animation: loading 3s linear infinite;
+      animation: loading 3s linear infinite;
+      -ms-animation-delay: 1.87s;
+      -moz-animation-delay: 1.87s;
+      -webkit-animation-delay: 1.87s;
+      -o-animation-delay: 1.87s;
+      animation-delay: 1.87s;
+    }
+    > div > div:nth-of-type(6) {
+      -ms-transform: translate(84px, 84px) rotate(270deg) translate(70px, 0);
+      -moz-transform: translate(84px, 84px) rotate(270deg) translate(70px, 0);
+      -webkit-transform: translate(84px, 84px) rotate(270deg) translate(70px, 0);
+      -o-transform: translate(84px, 84px) rotate(270deg) translate(70px, 0);
+      transform: translate(84px, 84px) rotate(270deg) translate(70px, 0);
+    }
+    > div > div:nth-of-type(7) > div {
+      -ms-animation: loading 3s linear infinite;
+      -moz-animation: loading 3s linear infinite;
+      -webkit-animation: loading 3s linear infinite;
+      -o-animation: loading 3s linear infinite;
+      animation: loading 3s linear infinite;
+      -ms-animation-delay: 2.25s;
+      -moz-animation-delay: 2.25s;
+      -webkit-animation-delay: 2.25s;
+      -o-animation-delay: 2.25s;
+      animation-delay: 2.25s;
+    }
+    > div > div:nth-of-type(7) {
+      -ms-transform: translate(84px, 84px) rotate(315deg) translate(70px, 0);
+      -moz-transform: translate(84px, 84px) rotate(315deg) translate(70px, 0);
+      -webkit-transform: translate(84px, 84px) rotate(315deg) translate(70px, 0);
+      -o-transform: translate(84px, 84px) rotate(315deg) translate(70px, 0);
+      transform: translate(84px, 84px) rotate(315deg) translate(70px, 0);
+    }
+    > div > div:nth-of-type(8) > div {
+      -ms-animation: loading 3s linear infinite;
+      -moz-animation: loading 3s linear infinite;
+      -webkit-animation: loading 3s linear infinite;
+      -o-animation: loading 3s linear infinite;
+      animation: loading 3s linear infinite;
+      -ms-animation-delay: 2.62s;
+      -moz-animation-delay: 2.62s;
+      -webkit-animation-delay: 2.62s;
+      -o-animation-delay: 2.62s;
+      animation-delay: 2.62s;
+    }
+    > div > div:nth-of-type(8) {
+      -ms-transform: translate(84px, 84px) rotate(360deg) translate(70px, 0);
+      -moz-transform: translate(84px, 84px) rotate(360deg) translate(70px, 0);
+      -webkit-transform: translate(84px, 84px) rotate(360deg) translate(70px, 0);
+      -o-transform: translate(84px, 84px) rotate(360deg) translate(70px, 0);
+      transform: translate(84px, 84px) rotate(360deg) translate(70px, 0);
+    }
 }
 
 // custom forms
@@ -57,7 +443,7 @@ header {
 
     &:hover {
         background:$gray-light;
-        &:after {
+        > div {
             border-color:$gray-lighter;
         }
         span {

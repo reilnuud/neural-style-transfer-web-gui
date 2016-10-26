@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+#allow web access
+gem 'passenger'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -66,3 +69,12 @@ gem 'mini_magick', '~> 4.5.1'
 
 # gem 'remotipart', '~> 1.2' is this still needed?
 gem 'dropzonejs-rails', '~> 0.7.3'
+
+# serial job queue
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+
+# run jobs
+gem 'daemons'
+gem 'god'
+

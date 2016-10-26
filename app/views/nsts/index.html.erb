@@ -5,7 +5,7 @@
 <div class="row">
 
   <div class="col-sm-6 text-xs-center text-sm-left">
-    <h1>Neural Style Transfers</h1>
+    <h1 class="margin-vertical">Neural Style Transfers</h1>
   </div>
 
   <div class="col-sm-6 text-xs-center text-sm-right">
@@ -18,55 +18,98 @@
 
 <div class="row">
 
-  <% @nsts.order(created_at: :desc).each do |nst| %>
+  <%  
 
-    <div class="col-sm-6 col-md-4" id="nst-<%= nst.id %>">
-      <div class="card">
-        <%= link_to nst.outputImage, "data-lightbox" => "index" do %>
-          <%= image_tag nst.outputImage, :class=>"card-img-top img-fluid" unless nst.outputImage.blank? %> 
-        <% end %>
-        <div class="progress-bar"></div>
+    @nsts.order(created_at: :desc).each do |nst|
 
-          <div class="card-block">
+      if nst.status == "success"
+        @outline = "card-outline-secondary"
+      elsif nst.status == "queued"
+        @outline = "card-outline-warning"
+      elsif nst.status == "processing"
+        @outline = "card-outline-primary"
+      elsif nst.status == "error"
+        @outline = "card-outline-danger"
+      else
+        @outline = "card-outline-secondary"
+      end
+    
+      %>
 
-            <div class="row">
+      <div class="col-sm-6 col-md-4" id="nst-<%= nst.id %>">
+        <div class="card <%= @outline %>">
+        <%=  if nst.status == 'processing'
+              content_tag :div, class: 'loading' do
+                  content_tag :div do
+                    8.times do
+                      concat(content_tag(:div, content_tag(:div)))
+                    end
+                  end
+                end
+              end -%>
 
-              <div class="col-xs-6" style="padding-right:5px;">
-                <%= image_tag nst.contentImage, :class=>"img-fluid" unless nst.contentImage.blank? %>
-                <strong>Content Image</strong><br />
-                <small><strong>Weight:</strong> <%= nst.contentWeight.round(0) %></small>
-              </div>
+        <%= if nst.status == 'queued'
+            content_tag :div, class: 'card-header alert-warning' do
+              content_tag(:p, "In queue. Check back later")
+            end
+          end -%>
 
-              <div class="col-xs-6" style="padding-left:5px;">
-                <%= image_tag nst.styleImage, :class=>"img-fluid" unless nst.styleImage.blank? %>
-                <strong>Style Image</strong><br />
-                <small><strong>Weight:</strong> <%= nst.styleWeight.round(0) %></small>
+        <%= link_to nst.outputImage, "data-lightbox" => "index" do 
+              image_tag nst.outputImage, :class=>"card-img-top img-fluid" unless nst.outputImage.blank?
+            end -%>
+
+            <%= if nst.status == 'error'
+                  content_tag :div, class: 'card-header alert-danger' do
+                    content_tag(:p, "There was an error computing your style transfer.")
+                    content_tag(:p, "There was an error computing your style transfer. Try less extreme settings or different images. The process has been known to have trouble processing high style ratios and images with square-like aspect ratios.")
+                  end
+                end -%>
+
+          <%= content_tag(:div, '', class: "progress-bar") unless nst.status != 'processing' %>
+
+            <div class="card-block">
+
+              <div class="row">
+
+                <div class="col-xs-6" style="padding-right:5px;">
+                  <%= image_tag nst.contentImage, :class=>"img-fluid" unless nst.contentImage.blank? %>
+                  <strong>Content Image</strong><br />
+                  <small><strong>Weight:</strong> <%= nst.contentWeight.round(0) %></small>
+                </div>
+
+                <div class="col-xs-6" style="padding-left:5px;">
+                  <%= image_tag nst.styleImage, :class=>"img-fluid" unless nst.styleImage.blank? %>
+                  <strong>Style Image</strong><br />
+                  <small><strong>Weight:</strong> <%= nst.styleWeight.round(0) %></small>
+                </div>
+
               </div>
 
             </div>
 
+          <%
+          if nst.tvRatio
+            @tvratio = nst.tvRatio
+          else
+            @tvratio = 5
+          end
+          %>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item small"><strong>Style Ratio:</strong> <%= nst.styleRatio %></li>
+            <li class="list-group-item small"><strong>Learning Rate:</strong> <%= nst.learnRate %></li>
+            <li class="list-group-item small"><strong>TV Strength:</strong> <%= @tvratio %></li>
+            <li class="list-group-item small"><strong>Iterations:</strong> <%= nst.iterations %></li>
+          </ul>
+
+          <div class="card-footer text-xs-right">
+          
+            <%= link_to 'Destroy', nst, method: :delete, :class => "btn btn-outline-danger btn-sm margin-vertical" , data: { confirm: 'Are you sure?' } %>
+
           </div>
 
-        <!--<strong>Styleratio:</strong> <%= nst.styleRatio %><br />
-        <strong>Imagesize:</strong> <%= nst.imageSize %><br />
-        <strong>Originalcolors:</strong> <%= nst.originalColors %><br />
-        <strong>Initpattern:</strong> <%= nst.initPattern %><br />
-        <strong>Pooling:</strong> <%= nst.pooling %><br />-->
-
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Style Ratio:</strong> <%= nst.styleRatio %></li>
-          <li class="list-group-item"><strong>Learning Rate:</strong> <%= nst.learnRate %></li>
-          <li class="list-group-item"><strong>Iterations:</strong> <%= nst.iterations %></li>
-        </ul>
-
-        <div class="card-footer text-xs-right">
-        
-          <%= link_to 'Destroy', nst, method: :delete, :class => "btn btn-outline-danger btn-sm margin-vertical" , data: { confirm: 'Are you sure?' } %>
-
         </div>
-
       </div>
-    </div>
 
   <% end %>
 
